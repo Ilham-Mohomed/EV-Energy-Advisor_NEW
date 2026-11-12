@@ -5,11 +5,11 @@
     "slug": "ev-energy-advisor-new",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./icon.png",
     "userInterfaceStyle": "dark",
     "newArchEnabled": true,
     "splash": {
-      "image": "./assets/splash-icon.png",
+      "image": "./splash-icon.png",
       "resizeMode": "contain",
       "backgroundColor": "#09030F"
     },
@@ -18,14 +18,14 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./adaptive-icon.png",
         "backgroundColor": "#09030F"
       },
       "edgeToEdgeEnabled": true,
       "package": "com.ilham.evenergyadvisor"
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./favicon.png"
     },
     "extra": {
       "eas": {
