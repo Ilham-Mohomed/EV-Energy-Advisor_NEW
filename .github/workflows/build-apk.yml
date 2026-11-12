@@ -1,3 +1,4 @@
+
 name: Build EV Energy Advisor APK
 
 on:
@@ -9,23 +10,39 @@ jobs:
   build-android-apk:
     name: Build Android APK
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
+
+      - name: Check Expo token
+        env:
+          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+        run: |
+          if [ -z "$EXPO_TOKEN" ]; then
+            echo "ERROR: EXPO_TOKEN is missing."
+            exit 1
+          fi
+          echo "Expo token is available."
+
       - name: Install dependencies
         run: npm install
+
       - name: Build APK with Expo EAS
         env:
           EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
         run: npx eas-cli@latest build --platform android --profile preview --non-interactive --wait
+
       - name: Download APK
         env:
           EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
         run: npx eas-cli@latest build:download --platform android --latest --path ./EV-Energy-Advisor.apk
+
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
