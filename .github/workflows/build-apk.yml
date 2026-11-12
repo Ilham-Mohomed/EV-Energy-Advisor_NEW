@@ -20,16 +20,6 @@ jobs:
         with:
           node-version: 22
 
-      - name: Check Expo token
-        env:
-          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
-        run: |
-          if [ -z "$EXPO_TOKEN" ]; then
-            echo "ERROR: EXPO_TOKEN is missing."
-            exit 1
-          fi
-          echo "Expo token is available."
-
       - name: Install dependencies
         run: npm install
 
@@ -37,16 +27,3 @@ jobs:
         env:
           EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
         run: npx eas-cli@latest build --platform android --profile preview --non-interactive --wait
-
-      - name: Download APK
-        env:
-          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
-        run: npx eas-cli@latest build:download --platform android --latest --path ./EV-Energy-Advisor.apk
-
-      - name: Upload APK artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: EV-Energy-Advisor-APK
-          path: EV-Energy-Advisor.apk
-          if-no-files-found: error
-          retention-days: 14
