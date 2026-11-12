@@ -1,11 +1,17 @@
-# Sample Snack app
+# EV Energy Advisor
 
-Open the `App.js` file to start writing some code. You can preview the changes directly on your phone or tablet by scanning the **QR code** or use the iOS or Android emulators. When you're done, click **Save** and share the link!
+Expo React Native application for V2G/V2H energy analysis and break-even point calculations.
 
-When you're ready to see everything that Expo provides (or if you want to use your own editor) you can **Download** your project and use it with [expo cli](https://docs.expo.dev/get-started/installation/#expo-cli)).
+## Android APK build
 
-All projects created in Snack are publicly available, so you can easily share the link to this project via link, or embed it on a web page with the `<>` button.
+This repository uses Expo EAS Build through GitHub Actions.
 
-If you're having problems, you can tweet to us [@expo](https://twitter.com/expo) or ask in our [forums](https://forums.expo.dev/c/expo-dev-tools/61) or [Discord](https://chat.expo.dev/).
+1. Install Node.js and run `npm install` in this folder.
+2. Sign in to Expo with `npx eas-cli@latest login`.
+3. Link this app to your Expo account with `npx eas-cli@latest init` and commit the generated `extra.eas.projectId` in `app.json`.
+4. Create an Expo access token in your Expo account settings.
+5. In GitHub, open **Settings → Secrets and variables → Actions → New repository secret**. Name it `EXPO_TOKEN` and paste the token as its value.
+6. Push the project to the `main` branch or manually run **Actions → Build EV Energy Advisor APK**.
+7. When the workflow succeeds, download `EV-Energy-Advisor-APK` from the run's **Artifacts** section.
 
-Snack is Open Source. You can find the code on the [GitHub repo](https://github.com/expo/snack).
+The `preview` EAS profile is configured to produce an installable Android APK. The `production` profile is configured for an Android App Bundle.
